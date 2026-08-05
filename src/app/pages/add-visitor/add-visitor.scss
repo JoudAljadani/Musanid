@@ -1,0 +1,221 @@
+/* =========================
+   PAGE
+========================= */
+
+ion-content {
+  --background: #ffffff;
+}
+
+.content {
+  padding: 18px 20px 32px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+ion-toolbar {
+  --background: #ffffff;
+  --border-style: none;
+  --min-height: 78px;
+  padding-inline: 12px;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  height: 56px;
+}
+
+.back-btn {
+  --background: #f3f5f9;
+  --border-radius: 14px;
+  width: 46px;
+  height: 46px;
+  margin: 0;
+}
+
+.back-btn ion-icon {
+  font-size: 22px;
+  color: #4a2d91;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 700;
+  color: #3f2a74;
+}
+
+/* =========================
+   SEGMENT
+========================= */
+
+.visit-segment {
+
+  background: #f4f4fa;
+  border-radius: 16px;
+  padding: 4px;
+  margin-bottom:28px;
+}
+
+.visit-segment ion-segment-button {
+  --background: transparent;
+  --background-checked: #4a2d91;
+  --color:#6b7280;
+  --color-checked: #fff;
+  --indicator-color:transparent;
+  --border-radius: 12px;
+  min-height: 48px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+/* =========================
+   TITLES
+========================= */
+
+.section-title {
+  margin: 34px 0 16px;
+
+  color: #4a2d91;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+/* =========================
+   FIELDS
+========================= */
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #3f3f46;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+ion-input,
+ion-select {
+
+  --border-radius: 16px;
+
+  --border-color: #d9dce3;
+
+  --border-color-focused: #4a2d91;
+
+  --highlight-color-focused: #4a2d91;
+
+  --padding-start: 16px;
+
+  --padding-end: 16px;
+
+  min-height: 54px;
+
+  font-size: 15px;
+}
+
+ion-input::part(native) {
+  color: #222;
+}
+
+ion-select::part(text) {
+  color: #555;
+}
+
+/* =========================
+   SEARCH ICON
+========================= */
+
+ion-input ion-icon {
+  color: #9ca3af;
+}
+
+/* =========================
+   COMPANION BUTTON
+========================= */
+
+.companion-button {
+
+  width: 100%;
+
+  height: 56px;
+
+  border: 2px dashed #d6c9ef;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  color: #4a2d91;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+}
+
+.companion-button ion-icon {
+  font-size: 22px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+ion-footer {
+  box-shadow: none;
+}
+
+.footer {
+  padding: 18px 20px 22px;
+  background: #ffffff;
+}
+
+.continue-btn {
+
+  --background: #4a2d91;
+
+  --background-hover: #4a2d91;
+
+  --background-activated: #4a2d91;
+
+  --border-radius: 16px;
+
+  height: 56px;
+
+  font-size: 16px;
+
+  font-weight: 700;
+}
+.companion-form {
+  margin-top: 18px;
+}
+.companion-form .field {
+  margin-bottom: 16px;
+}/* Musaned internal theme */
+ion-content{--background:#f4f7fb}.content{padding:20px 18px 34px}.visit-segment{display:none}.page-title{font-size:20px;color:#071b3e}.section-title{color:#071b3e;font-size:16px;margin:24px 0 13px}.field label{color:#071b3e}.companion-button{border-color:rgba(29,120,161,.22);color:#1d78a1}.continue-btn{--background:linear-gradient(100deg,#06a9b6,#1d78a1,#402f82)}

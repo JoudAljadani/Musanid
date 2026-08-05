@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true" class="splash-content">
+  <div class="splash-container">
+
+    <img
+      class="splash-background"
+      src="assets/images/bg3.png"
+      alt=""
+    />
+
+    <div class="splash-logo-wrapper">
+      <img
+        class="splash-logo"
+        src="assets/images/musanidLogo.svg"
+        alt="Musanid"
+      />
+    </div>
+
+    <div class="splash-tagline" *ngIf="showTagline">
+      لإنجاز أسرع وتنظيم أفضل
+    </div>
+
+    <div class="splash-progress-wrapper" *ngIf="showProgress">
+      <ion-progress-bar
+        class="splash-progress"
+        [value]="progressValue"
+      ></ion-progress-bar>
+    </div>
+
+  </div>
+</ion-content>

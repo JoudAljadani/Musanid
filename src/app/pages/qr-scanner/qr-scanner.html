@@ -1,0 +1,51 @@
+<ion-content
+  [fullscreen]="true"
+  [scrollY]="false"
+  class="scanner-content"
+  dir="rtl"
+>
+  <main class="scanner-page">
+    <ion-button
+      type="button"
+      fill="clear"
+      class="close-button"
+      aria-label="إغلاق ماسح رمز QR والعودة للرئيسية"
+      (click)="closeScanner()"
+    >
+      <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+    </ion-button>
+
+    <header class="scanner-header">
+      <h1>مسح رمز QR</h1>
+      <p>وجّه الكاميرا نحو رمز QR</p>
+    </header>
+
+    <section class="scan-area" aria-label="منطقة مسح رمز QR">
+      <svg
+        class="scan-frame"
+        viewBox="0 0 1000 1000"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="scanGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#06A9B6" />
+            <stop offset="37%" stop-color="#1D78A1" />
+            <stop offset="54%" stop-color="#305090" />
+            <stop offset="67%" stop-color="#3C3886" />
+            <stop offset="100%" stop-color="#402F82" />
+          </linearGradient>
+        </defs>
+
+        <path d="M220 20 H48 Q20 20 20 48 V220" />
+        <path d="M780 20 H952 Q980 20 980 48 V220" />
+        <path d="M20 780 V952 Q20 980 48 980 H220" />
+        <path d="M980 780 V952 Q980 980 952 980 H780" />
+      </svg>
+    </section>
+
+    <p class="automatic-scan-note">
+      سيتم المسح تلقائيًا عند التعرّف على الرمز
+    </p>
+  </main>
+</ion-content>

@@ -1,0 +1,122 @@
+<ion-header class="ion-no-border">
+
+  <ion-toolbar>
+
+    <div class="header">
+
+      <ion-button
+        fill="clear"
+        class="back-btn" (click)="goBack()">
+
+        <ion-icon name="chevron-back-outline"></ion-icon>
+
+      </ion-button>
+
+      <h1 class="page-title">
+        مراجعة بيانات الزائر
+      </h1>
+
+    </div>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content fullscreen>
+
+  <div class="content">
+
+    <div class="visitor-card">
+
+      <div class="avatar">
+        {{ initials }}
+      </div>
+
+      <h2>
+        {{ visitor.fullName }}
+      </h2>
+
+      <p>
+        رقم الهوية:
+        {{ visitor.idNumber }}
+      </p>
+
+    </div>
+
+    <div class="info-row">
+
+      <span>رقم المحضر</span>
+
+      <strong>
+        {{ visitor.reference }}
+      </strong>
+
+    </div>
+
+    <div class="info-row">
+
+      <span>الإدارة</span>
+
+      <strong>
+        {{ visitor.department }}
+      </strong>
+
+    </div>
+
+    <div class="info-row">
+
+      <span>سبب الزيارة</span>
+
+      <strong>
+        {{ visitor.visitReason }}
+      </strong>
+
+    </div>
+    <div class="info-row">
+
+      <span>تاريخ الزيارة</span>
+
+      <strong>
+        {{ visitor.visitDate }}
+      </strong>
+
+    </div>
+
+    <div class="info-row">
+
+      <span>وقت الموعد</span>
+
+      <strong>
+        {{ visitor.visitTime }}
+      </strong>
+
+    </div>
+
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+
+  <div class="footer">
+
+    <ion-button
+      expand="block"
+      class="confirm-btn"
+      (click)="goToSuccess()">
+
+      تأكيد تسجيل الدخول
+
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      class="cancel-btn" (click)="goBack()">
+
+      إلغاء
+
+    </ion-button>
+
+  </div>
+
+</ion-footer>

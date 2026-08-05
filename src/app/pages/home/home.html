@@ -1,0 +1,155 @@
+<ion-content
+  [fullscreen]="true"
+  [scrollY]="false"
+  class="home-content"
+  dir="rtl"
+>
+  <main class="home-page">
+    <header class="top-header">
+      <button
+        type="button"
+        class="profile-section"
+        aria-label="فتح الحساب"
+        (click)="openProfile()"
+      >
+        <ion-icon
+          class="profile-avatar"
+          name="person-circle-outline"
+        ></ion-icon>
+
+        <div class="employee-information">
+          <p class="welcome-text">مرحبًا، {{ employeeName }}</p>
+          <span class="employee-role">{{ employeeRole }}</span>
+        </div>
+      </button>
+
+      <ion-button
+        type="button"
+        fill="clear"
+        class="notification-button"
+        aria-label="الإشعارات"
+        (click)="openNotifications()"
+      >
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+        <ion-badge
+          *ngIf="hasUnreadNotifications"
+          class="notification-badge"
+        ></ion-badge>
+      </ion-button>
+    </header>
+
+    <section class="slider-section" aria-label="تطبيقات الأمانة">
+      <div
+        class="slider-track"
+        [style.transform]="'translateX(' + currentSlide * 100 + '%)'"
+      >
+        <article
+          *ngFor="let slide of sliderItems"
+          class="slider-card"
+          [style.background]="slide.background"
+        >
+          <div class="slider-text">
+            <span class="slider-label">تطبيقات الأمانة</span>
+            <h1>{{ slide.title }}</h1>
+            <p>{{ slide.description }}</p>
+          </div>
+
+          <div class="slider-icon">
+            <ion-icon [name]="slide.icon"></ion-icon>
+          </div>
+        </article>
+      </div>
+
+      <div class="slider-dots">
+        <button
+          *ngFor="let slide of sliderItems; let index = index"
+          type="button"
+          class="slider-dot"
+          [class.active]="currentSlide === index"
+          [attr.aria-label]="'عرض البطاقة رقم ' + (index + 1)"
+          (click)="selectSlide(index)"
+        ></button>
+      </div>
+    </section>
+
+    <ion-card class="section-card registration-card">
+      <ion-card-content>
+        <div class="section-heading">
+          <h2>تسجيل زيارة جديدة</h2>
+        </div>
+
+        <ion-grid class="actions-grid">
+          <ion-row>
+            <ion-col size="6">
+              <ion-button
+                type="button"
+                fill="clear"
+                class="action-button qr-action"
+                (click)="openQrScanner()"
+              >
+                <div class="action-content">
+                  <div class="action-icon">
+                    <ion-icon name="qr-code-outline"></ion-icon>
+                  </div>
+                  <h3>مسح رمز QR</h3>
+                  <p>مسح رمز الزائر وتسجيل الزيارة</p>
+                </div>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="6">
+              <ion-button
+                type="button"
+                fill="clear"
+                class="action-button manual-action"
+                (click)="openManualRegistration()"
+              >
+                <div class="action-content">
+                  <div class="action-icon">
+                    <ion-icon name="create-outline"></ion-icon>
+                  </div>
+                  <h3>تسجيل يدوي</h3>
+                  <p>إدخال معلومات الزائر يدويًا</p>
+                </div>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="section-card summary-card">
+      <ion-card-content>
+        <div class="summary-heading">
+          <div class="section-heading">
+            <h2>ملخص اليوم</h2>
+          </div>
+
+          <div class="live-status">
+            <span
+              class="live-dot"
+              [class.is-live]="isLive"
+            ></span>
+            {{ isLive ? 'مباشر' : 'غير متصل' }}
+          </div>
+        </div>
+
+        <ion-grid class="summary-grid">
+          <ion-row>
+            <ion-col size="4" *ngFor="let item of summaryItems">
+              <article class="summary-item" [ngClass]="item.className">
+                <div class="summary-icon">
+                  <ion-icon [name]="item.icon"></ion-icon>
+                </div>
+                <strong>{{ item.value }}</strong>
+                <p>{{ item.title }}</p>
+                <span class="summary-line"></span>
+              </article>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-card-content>
+    </ion-card>
+  </main>
+</ion-content>

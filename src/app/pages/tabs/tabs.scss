@@ -1,0 +1,119 @@
+:host {
+  --musaned-teal: #06a9b6;
+  --musaned-blue: #1d78a1;
+  --musaned-purple: #3c3886;
+  display: block;
+  height: 100%;
+}
+
+ion-tabs {
+  background: #f5f7fb;
+}
+
+.custom-tab-bar {
+  width: calc(100% - 32px);
+  max-width: 398px;
+  height: 72px;
+  margin: 0 auto calc(max(env(safe-area-inset-bottom), 10px) + 4px);
+  transform: translateY(0);
+  padding: 0 7px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 23px;
+  background: #ffffff;
+  box-shadow: 0 9px 28px rgba(31, 48, 86, 0.14);
+}
+
+ion-tab-button {
+  position: relative;
+  height: 72px;
+  --background: transparent;
+  --background-focused: transparent;
+  --background-hover: transparent;
+  --ripple-color: transparent;
+  --color: #98a5bd;
+  --color-selected: var(--musaned-blue);
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.tab-icon-shell {
+  width: 38px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 2px;
+  border-radius: 11px;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+ion-icon {
+  color: #98a5bd;
+  font-size: 20px;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+ion-label {
+  margin: 0;
+  color: #98a5bd;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.active-line {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 38px;
+  height: 3px;
+  border-radius: 0 0 9px 9px;
+  background: linear-gradient(90deg, var(--musaned-teal), var(--musaned-purple));
+  opacity: 0;
+  transform: translateX(50%) scaleX(0.5);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+ion-tab-button.tab-selected {
+  .tab-icon-shell {
+    background: rgba(6, 169, 182, 0.1);
+    transform: translateY(-1px);
+  }
+
+  ion-icon {
+    color: var(--musaned-teal);
+    transform: scale(1.06);
+  }
+
+  ion-label {
+    color: var(--musaned-blue);
+    font-weight: 600;
+  }
+
+  .active-line {
+    opacity: 1;
+    transform: translateX(50%) scaleX(1);
+  }
+}
+
+/* Final nav alignment: match the main cards and soften the elevation */
+.custom-tab-bar {
+  width: calc(100% - 56px);
+  max-width: 374px;
+  box-shadow: 0 6px 18px rgba(31, 48, 86, 0.085);
+}
+
+ion-label {
+  font-size: 10.5px;
+}
+
+/* Final alignment: match the white cards exactly */
+.custom-tab-bar {
+  width: calc(100% - 32px);
+  max-width: 398px;
+}
+
+/* Keep a clean bottom safe area for the device home indicator. */
+.custom-tab-bar {
+  margin-bottom: calc(max(env(safe-area-inset-bottom), 18px) + 2px);
+}

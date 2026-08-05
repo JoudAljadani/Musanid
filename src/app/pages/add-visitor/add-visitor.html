@@ -1,0 +1,196 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+
+    <div class="header">
+
+      <ion-button
+        fill="clear"
+        class="back-btn" (click)="goBack()">
+
+        <ion-icon
+          name="chevron-back-outline">
+        </ion-icon>
+
+      </ion-button>
+
+      <h1 class="page-title">
+        إضافة زائر جديد
+      </h1>
+
+    </div>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <div class="content">
+
+    <div class="field">
+
+      <label>
+        الاسم الكامل
+      </label>
+
+      <ion-input
+        fill="outline"
+        [(ngModel)]="form.fullName"
+        placeholder="مثال: فيصل عبدالعزيز الغامدي">
+      </ion-input>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        رقم الهوية / الإقامة
+      </label>
+
+      <ion-input
+        fill="outline"
+        [(ngModel)]="form.idNumber"
+        type="tel"
+        placeholder="10 أرقام">
+      </ion-input>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        رقم الجوال
+      </label>
+
+      <ion-input
+        fill="outline"
+        [(ngModel)]="form.mobile"
+        type="tel"
+        placeholder="05xxxxxxxx">
+      </ion-input>
+
+    </div>
+
+    <h2 class="section-title">
+      معلومات الزيارة
+    </h2>
+
+    <div class="field">
+
+      <label>
+        الإدارة المستضيفة
+      </label>
+
+      <ion-select
+        fill="outline"
+        [(ngModel)]="form.department"
+        interface="action-sheet"
+        placeholder="اختر الإدارة">
+
+        <ion-select-option>
+          خدمة العملاء
+        </ion-select-option>
+
+        <ion-select-option>
+          تقنية المعلومات
+        </ion-select-option>
+
+        <ion-select-option>
+          الموارد البشرية
+        </ion-select-option>
+
+      </ion-select>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        سبب الزيارة
+      </label>
+
+      <ion-select
+        fill="outline"
+        [(ngModel)]="form.visitReason"
+        interface="action-sheet"
+        placeholder="اختر سبب الزيارة">
+
+        <ion-select-option>
+          اجتماع
+        </ion-select-option>
+
+        <ion-select-option>
+          مقابلة
+        </ion-select-option>
+
+        <ion-select-option>
+          استفسار
+        </ion-select-option>
+
+      </ion-select>
+
+    </div>
+
+    <h2 class="section-title">
+      إضافة مرافق
+    </h2>
+
+    <button
+    type="button"
+  class="companion-button"
+  *ngIf="!showCompanionFormFlag"
+  (click)="showCompanionFormFlag = true">
+  <ion-icon name="add-outline"></ion-icon>
+  <span>إضافة مرافق</span>
+</button>
+<div
+  class="companion-form"
+  *ngIf="showCompanionFormFlag">
+
+  <div class="field">
+
+    <label>اسم المرافق</label>
+
+    <ion-input
+      fill="outline"
+      placeholder="اكتب اسم المرافق">
+    </ion-input>
+
+  </div>
+
+  <div class="field">
+
+    <label>رقم هوية المرافق</label>
+
+    <ion-input
+      fill="outline"
+      type="tel"
+      placeholder="10 أرقام">
+    </ion-input>
+
+  </div>
+
+
+
+</div>
+
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+
+  <div class="footer">
+
+    <ion-button
+      expand="block"
+      class="continue-btn"
+      (click)="goToConfirm()"
+      [disabled]="!isValid">
+
+      متابعة تسجيل الزيارة
+
+    </ion-button>
+
+  </div>
+
+</ion-footer>

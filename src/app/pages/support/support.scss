@@ -1,0 +1,250 @@
+:host {
+  --musaned-teal: #06a9b6;
+  --musaned-blue: #1d78a1;
+  --musaned-navy: #305090;
+  --musaned-purple: #3c3886;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.support-content {
+  --background: #f5f7fb;
+  --overflow: hidden;
+}
+
+.support-page {
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 27px) 16px 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #f5f7fb;
+}
+
+.page-header {
+  flex: 0 0 68px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 9px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #10213e;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.help-card {
+  flex: 0 0 auto;
+  min-height: 118px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 17px;
+  border: 1px solid rgba(29, 120, 161, 0.06);
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(31, 48, 86, 0.038);
+}
+
+.help-icon {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(6, 169, 182, 0.12), rgba(60, 56, 134, 0.09));
+}
+
+.help-icon ion-icon {
+  color: var(--musaned-purple);
+  font-size: 25px;
+}
+
+.help-copy {
+  min-width: 0;
+  text-align: right;
+}
+
+.help-copy h2 {
+  margin: 0 0 4px;
+  color: #20283a;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.help-copy p {
+  margin: 0;
+  color: #7e899d;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.contact-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 2px 13px;
+}
+
+.section-heading h2 {
+  flex: 0 0 auto;
+  margin: 0;
+  color: #111827;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.heading-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(48, 80, 144, 0), rgba(48, 80, 144, 0.16), rgba(48, 80, 144, 0));
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.contact-card {
+  min-width: 0;
+  width: 100%;
+  min-height: 78px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 15px;
+  border: 1px solid rgba(29, 120, 161, 0.045);
+  border-radius: 18px;
+  background: #ffffff;
+  color: inherit;
+  text-align: right;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(31, 48, 86, 0.038);
+}
+
+.hours-card {
+  grid-template-columns: 44px minmax(0, 1fr);
+}
+
+.icon-box {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+}
+
+.icon-box ion-icon { font-size: 20px; }
+.icon-box.teal { color: var(--musaned-teal); background: rgba(6, 169, 182, 0.1); }
+.icon-box.blue { color: var(--musaned-blue); background: rgba(29, 120, 161, 0.09); }
+.icon-box.purple { color: var(--musaned-purple); background: rgba(60, 56, 134, 0.09); }
+.icon-box.navy { color: var(--musaned-navy); background: rgba(48, 80, 144, 0.09); }
+
+.contact-copy { min-width: 0; }
+
+.contact-copy span {
+  display: block;
+  margin-bottom: 2px;
+  color: #20283a;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.contact-copy strong {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: #8a93a6;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.card-arrow {
+  justify-self: end;
+  color: #a7b0c0;
+  font-size: 19px;
+}
+
+.response-note {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 13px;
+  padding: 9px 12px;
+  border-radius: 14px;
+  background: rgba(6, 169, 182, 0.065);
+}
+
+.response-note ion-icon {
+  color: var(--musaned-blue);
+  font-size: 16px;
+}
+
+.response-note p {
+  margin: 0;
+  color: #111827;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@media (max-height: 760px) {
+  .support-page {
+    padding-top: calc(env(safe-area-inset-top) + 20px);
+  }
+
+  .page-header {
+    flex-basis: 58px;
+    margin-bottom: 7px;
+  }
+
+  .help-card {
+    min-height: 106px;
+    padding: 15px 16px;
+  }
+
+  .contact-section {
+    margin-top: 14px;
+  }
+
+  .section-heading {
+    margin-bottom: 10px;
+  }
+
+  .contact-list {
+    gap: 10px;
+  }
+
+  .contact-card {
+    min-height: 72px;
+    padding: 12px 14px;
+  }
+
+  .response-note {
+    margin-top: 9px;
+    padding: 8px 11px;
+  }
+}

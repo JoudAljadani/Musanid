@@ -1,0 +1,195 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ */
+
+/* Core CSS required for Ionic components */
+@import "@ionic/angular/css/core.css";
+
+/* Basic Ionic CSS */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional Ionic utilities */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Dark mode follows system settings */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* =====================================
+   IBM Plex Sans Arabic — Local Font
+===================================== */
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/assets/fonts/IBMPlexSansArabic-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/assets/fonts/IBMPlexSansArabic-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/assets/fonts/IBMPlexSansArabic-SemiBold.ttf")
+    format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/assets/fonts/IBMPlexSansArabic-Bold.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =====================================
+   Global font variables
+===================================== */
+
+:root {
+  --ion-font-family: "IBM Plex Sans Arabic", sans-serif;
+
+  /* Ionic primary color = Musanid teal */
+  --ion-color-primary: #06a9b6;
+  --ion-color-primary-rgb: 6, 169, 182;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #0595a0;
+  --ion-color-primary-tint: #1fb2bd;
+}
+
+/* =====================================
+   Apply font globally
+===================================== */
+
+html,
+body,
+ion-app,
+ion-content,
+ion-header,
+ion-toolbar,
+ion-title,
+ion-label,
+ion-input,
+ion-textarea,
+ion-button,
+ion-checkbox,
+ion-item,
+ion-list,
+ion-card,
+ion-card-title,
+ion-card-subtitle,
+ion-card-content,
+ion-text,
+ion-note,
+ion-tab-button,
+ion-segment-button,
+ion-alert,
+ion-toast,
+ion-modal,
+ion-popover,
+ion-searchbar,
+button,
+input,
+textarea,
+select,
+label,
+span,
+p {
+  font-family: "IBM Plex Sans Arabic", sans-serif !important;
+
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+
+  font-kerning: normal;
+  font-variant-ligatures: normal;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1;
+
+  text-rendering: auto;
+}
+
+/* Prevent Ionic button Arabic text spacing */
+ion-button {
+  --letter-spacing: 0;
+
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Inputs */
+ion-input,
+ion-textarea {
+  --letter-spacing: 0;
+
+  letter-spacing: 0 !important;
+}
+
+ion-input::part(native),
+ion-textarea::part(native) {
+  font-family: "IBM Plex Sans Arabic", sans-serif !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+}
+
+/* Checkbox default application color */
+ion-checkbox {
+  --background-checked: #06a9b6;
+  --border-color-checked: #06a9b6;
+  --checkmark-color: #ffffff;
+
+  letter-spacing: 0 !important;
+}
+
+/* Font rendering */
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* QR scanner camera preview: only the scanner overlay is transparent. */
+body.qr-scanner-active,
+body.qr-scanner-active ion-app,
+body.qr-scanner-active ion-router-outlet,
+body.qr-scanner-active app-qr-scanner,
+body.qr-scanner-active app-qr-scanner ion-content,
+body.qr-scanner-active app-qr-scanner .scanner-page {
+  background: transparent !important;
+  --background: transparent !important;
+}
+
+/* Reports success toast */
+ion-toast.success-toast-soft {
+  --background: #dff6e7;
+  --color: #1f6b3a;
+  --border-radius: 16px;
+  --box-shadow: 0 8px 20px rgba(46, 139, 87, 0.14);
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 600;
+}
+ion-toast.success-toast-soft::part(container) {
+  border-radius: 16px;
+  border: 1px solid rgba(46, 139, 87, 0.14);
+}

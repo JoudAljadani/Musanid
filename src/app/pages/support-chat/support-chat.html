@@ -1,0 +1,48 @@
+<ion-content [fullscreen]="true" [scrollY]="false" class="chat-content" dir="rtl">
+  <main class="chat-page">
+    <header class="chat-header">
+      <button class="back-button" type="button" (click)="goBack()" aria-label="الرجوع">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </button>
+      <h1>الدردشة المباشرة</h1>
+      <span class="header-spacer"></span>
+    </header>
+
+    <section #messagesContainer class="messages">
+      <div class="notice">عادةً يتم الرد خلال يوم عمل واحد.</div>
+
+      <div *ngFor="let message of messages" class="message-row" [class.employee]="message.sender === 'employee'">
+        <article class="bubble" [class.employee-bubble]="message.sender === 'employee'">
+          <p>{{ message.text }}</p>
+          <small>
+            {{ message.time }}
+            <ion-icon *ngIf="message.sender === 'employee'" name="checkmark-done-outline"></ion-icon>
+          </small>
+        </article>
+      </div>
+    </section>
+
+    <footer class="composer">
+      <div class="composer-box" (click)="focusComposer()">
+        <textarea
+          #messageInput
+          [(ngModel)]="messageText"
+          placeholder="اكتب رسالتك هنا..."
+          inputmode="text"
+          enterkeyhint="send"
+          autocomplete="off"
+          autocapitalize="sentences"
+          spellcheck="true"
+          rows="1"
+          maxlength="1000"
+          aria-label="اكتب رسالتك"
+          (keydown.enter)="handleEnter($event)"
+        ></textarea>
+
+        <button type="button" (click)="sendMessage(); $event.stopPropagation()" [disabled]="!messageText.trim()" aria-label="إرسال">
+          <ion-icon name="send-outline"></ion-icon>
+        </button>
+      </div>
+    </footer>
+  </main>
+</ion-content>

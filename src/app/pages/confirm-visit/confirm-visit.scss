@@ -1,0 +1,104 @@
+ion-content {
+  --background: #f8f9fc;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.back-btn {
+  position: absolute;
+  left: 8px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+}
+
+.content {
+  padding: 24px 20px;
+}
+
+.visitor-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.06);
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #4a2d91;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.visitor-card h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+}
+
+.visitor-card p {
+  margin-top: 8px;
+  color: #666;
+  font-size: 15px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  border: 1px solid #ececec;
+}
+
+.info-row span {
+  color: #666;
+  font-size: 15px;
+}
+
+.info-row strong {
+  color: #222;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.footer {
+  padding: 18px;
+  background: #fff;
+}
+
+.confirm-btn {
+  --background: #4a2d91;
+  --border-radius: 14px;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cancel-btn {
+  width: 100%;
+  margin-top: 10px;
+  color: #666;
+}ion-content{--background:#f4f7fb}.page-title{font-size:20px;color:#071b3e}.avatar{background:linear-gradient(145deg,#06a9b6,#1d78a1,#402f82)}.confirm-btn{--background:linear-gradient(100deg,#06a9b6,#1d78a1,#402f82)}

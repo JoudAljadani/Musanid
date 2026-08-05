@@ -1,0 +1,7 @@
+:host{display:block;height:100%}.logout-content{--background:#f5f7fb;--overflow:hidden}.logout-page{height:100%;max-width:430px;margin:auto;padding:calc(env(safe-area-inset-top) + 44px) 20px calc(env(safe-area-inset-bottom) + 28px);display:flex;flex-direction:column;justify-content:center;gap:16px;background:#f5f7fb}.confirm-card{text-align:center;padding:34px 24px;border-radius:24px;background:#fff;box-shadow:0 5px 16px rgba(31,48,86,.05)}.logout-icon{width:82px;height:82px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;background:rgba(216,75,95,.08);color:#d84b5f}.logout-icon ion-icon{font-size:40px}.confirm-card h1{margin:0 0 10px;color:#17233f;font-size:20px}.confirm-card p{margin:0;color:#818b9e;font-size:14px;line-height:1.8}.confirm-button,.cancel-button{height:58px;border-radius:16px;font-family:inherit;font-size:17px;font-weight:700}.confirm-button{border:1.5px solid #d84b5f;background:#fff;color:#d84b5f;display:flex;align-items:center;justify-content:center;gap:10px}.confirm-button:active{background:#c95b68;color:#fff}.confirm-button ion-icon{font-size:22px}.cancel-button{border:1px solid rgba(60,56,134,.13);background:#fff;color:#3c3886}
+
+.cancel-button:active {
+  border-color: transparent;
+  color: #fff;
+  background: linear-gradient(90deg,#06a9b6 0%,#1d78a1 38%,#305090 62%,#402f82 100%);
+}

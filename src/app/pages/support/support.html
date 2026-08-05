@@ -1,0 +1,76 @@
+<ion-content [fullscreen]="true" [scrollY]="false" class="support-content" dir="rtl">
+  <main class="support-page">
+    <header class="page-header">
+      <h1>الدعم الفني</h1>
+    </header>
+
+    <section class="help-card">
+      <div class="help-icon" aria-hidden="true">
+        <ion-icon name="headset-outline"></ion-icon>
+      </div>
+
+      <div class="help-copy">
+        <h2>نحن هنا لمساعدتك</h2>
+        <p>اختر وسيلة التواصل المناسبة، وسيساعدك فريق الدعم في أقرب وقت.</p>
+      </div>
+    </section>
+
+    <section class="contact-section" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <span class="heading-line" aria-hidden="true"></span>
+        <h2 id="contact-title">قنوات التواصل</h2>
+        <span class="heading-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="contact-list">
+        <a class="contact-card" href="tel:920000000" aria-label="الاتصال بالدعم الفني على الرقم 920000000">
+          <div class="icon-box teal">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+          <div class="contact-copy">
+            <span>رقم الهاتف</span>
+            <strong dir="ltr">920000000</strong>
+          </div>
+          <ion-icon class="card-arrow" name="chevron-forward-outline"></ion-icon>
+        </a>
+
+        <a class="contact-card" href="mailto:support@jeddah.gov.sa" aria-label="إرسال بريد إلكتروني إلى الدعم الفني">
+          <div class="icon-box blue">
+            <ion-icon name="mail-outline"></ion-icon>
+          </div>
+          <div class="contact-copy">
+            <span>البريد الإلكتروني</span>
+            <strong dir="ltr">support@jeddah.gov.sa</strong>
+          </div>
+          <ion-icon class="card-arrow" name="chevron-forward-outline"></ion-icon>
+        </a>
+
+        <button type="button" class="contact-card" (click)="openChat()">
+          <div class="icon-box purple">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+          </div>
+          <div class="contact-copy">
+            <span>الدردشة المباشرة</span>
+            <strong>ابدأ محادثة</strong>
+          </div>
+          <ion-icon class="card-arrow" name="chevron-forward-outline"></ion-icon>
+        </button>
+
+        <article class="contact-card hours-card">
+          <div class="icon-box navy">
+            <ion-icon name="time-outline"></ion-icon>
+          </div>
+          <div class="contact-copy">
+            <span>ساعات العمل</span>
+            <strong>الأحد – الخميس، 8:00 ص – 3:00 م</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="response-note">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <p>عادةً يتم الرد خلال يوم عمل واحد.</p>
+    </aside>
+  </main>
+</ion-content>

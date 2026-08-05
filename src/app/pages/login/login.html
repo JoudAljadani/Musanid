@@ -1,0 +1,316 @@
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="login-page">
+
+    <!-- خلفية الصفحة -->
+    <img
+      class="login-background"
+      src="assets/images/bg3.png"
+      alt=""
+    />
+
+    <!-- الشعار -->
+    <div class="logo-section">
+      <img
+        class="musaned-logo"
+        src="assets/images/musanidLogo.svg"
+        alt="شعار مساند"
+      />
+    </div>
+
+    <!-- نموذج تسجيل الدخول -->
+    <main class="login-form-section">
+      <form
+        #loginForm="ngForm"
+        novalidate
+        (ngSubmit)="login(loginForm)"
+      >
+
+        <!-- البريد الإلكتروني -->
+        <div class="form-group">
+          <ion-label class="field-label">
+            البريد الإلكتروني الوظيفي
+          </ion-label>
+
+          <div
+            class="input-container"
+            [class.input-focused]="emailFocused"
+            [class.input-error]="
+              (emailInput.invalid && emailInput.touched) ||
+              (submitted && emailInput.invalid)
+            "
+          >
+            <ion-input
+              #emailInput="ngModel"
+              class="email-input"
+              type="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="example@jeddah.gov.sa"
+              inputmode="email"
+              autocomplete="email"
+              dir="ltr"
+              email
+              required
+              (ionInput)="sanitizeEmail($event)"
+              (ionFocus)="emailFocused = true"
+              (ionBlur)="emailFocused = false"
+            ></ion-input>
+
+            <ion-icon
+              name="mail-outline"
+              class="field-icon"
+            ></ion-icon>
+          </div>
+
+          <div
+            class="field-error-message"
+            *ngIf="
+              (emailInput.invalid && emailInput.touched) ||
+              (submitted && emailInput.invalid)
+            "
+          >
+            <ion-icon name="alert-circle-outline"></ion-icon>
+
+            <span *ngIf="emailInput.errors?.['required']">
+              يرجى إدخال البريد الإلكتروني الوظيفي
+            </span>
+
+            <span
+              *ngIf="
+                emailInput.errors?.['email'] &&
+                !emailInput.errors?.['required']
+              "
+            >
+              صيغة البريد الإلكتروني غير صحيحة
+            </span>
+          </div>
+        </div>
+
+        <!-- كلمة المرور -->
+        <div class="form-group password-group">
+          <ion-label class="field-label">
+            كلمة المرور
+          </ion-label>
+
+          <div
+            class="input-container"
+            [class.input-focused]="passwordFocused"
+            [class.input-error]="
+              submitted &&
+              (
+                passwordInput.invalid ||
+                !passwordMeetsAllRequirements
+              )
+            "
+          >
+            <ion-input
+              #passwordInput="ngModel"
+              class="password-input"
+              [type]="showPassword ? 'text' : 'password'"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="••••••••"
+              inputmode="text"
+              autocomplete="current-password"
+              dir="ltr"
+              required
+              minlength="8"
+              (ionInput)="sanitizePassword($event)"
+              (ionFocus)="passwordFocused = true"
+              (ionBlur)="passwordFocused = false"
+            ></ion-input>
+
+            <ion-icon
+              name="lock-closed-outline"
+              class="field-icon"
+            ></ion-icon>
+
+            <ion-button
+              type="button"
+              fill="clear"
+              class="password-toggle"
+              aria-label="إظهار أو إخفاء كلمة المرور"
+              (click)="togglePassword()"
+            >
+              <ion-icon
+                [name]="
+                  showPassword
+                    ? 'eye-outline'
+                    : 'eye-off-outline'
+                "
+              ></ion-icon>
+            </ion-button>
+          </div>
+
+          <!-- شروط كلمة المرور -->
+          <div
+            class="password-requirements"
+            *ngIf="passwordFocused"
+          >
+            <p class="requirements-title">
+              يجب أن تحتوي كلمة المرور على:
+            </p>
+
+            <div
+              class="requirement-item"
+              [class.requirement-valid]="passwordHasMinLength"
+            >
+              <ion-icon
+                [name]="
+                  passwordHasMinLength
+                    ? 'checkbox-outline'
+                    : 'square-outline'
+                "
+              ></ion-icon>
+
+              <span>8 خانات على الأقل</span>
+            </div>
+
+            <div
+              class="requirement-item"
+              [class.requirement-valid]="passwordHasUppercase"
+            >
+              <ion-icon
+                [name]="
+                  passwordHasUppercase
+                    ? 'checkbox-outline'
+                    : 'square-outline'
+                "
+              ></ion-icon>
+
+              <span>حرف إنجليزي كبير</span>
+            </div>
+
+            <div
+              class="requirement-item"
+              [class.requirement-valid]="passwordHasLowercase"
+            >
+              <ion-icon
+                [name]="
+                  passwordHasLowercase
+                    ? 'checkbox-outline'
+                    : 'square-outline'
+                "
+              ></ion-icon>
+
+              <span>حرف إنجليزي صغير</span>
+            </div>
+
+            <div
+              class="requirement-item"
+              [class.requirement-valid]="passwordHasNumber"
+            >
+              <ion-icon
+                [name]="
+                  passwordHasNumber
+                    ? 'checkbox-outline'
+                    : 'square-outline'
+                "
+              ></ion-icon>
+
+              <span>رقم واحد على الأقل</span>
+            </div>
+
+            <div
+              class="requirement-item"
+              [class.requirement-valid]="
+                passwordHasSpecialCharacter
+              "
+            >
+              <ion-icon
+                [name]="
+                  passwordHasSpecialCharacter
+                    ? 'checkbox-outline'
+                    : 'square-outline'
+                "
+              ></ion-icon>
+
+              <span>
+                رمز خاص مثل:
+                &#64; # $ %
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="field-error-message"
+            *ngIf="
+              passwordInput.errors?.['required'] &&
+              submitted
+            "
+          >
+            <ion-icon name="alert-circle-outline"></ion-icon>
+
+            <span>يرجى إدخال كلمة المرور</span>
+          </div>
+        </div>
+
+        <!-- الخيارات -->
+        <div class="login-options">
+          <label class="remember-option">
+            <ion-checkbox
+              [(ngModel)]="rememberMe"
+              name="rememberMe"
+              mode="md"
+            ></ion-checkbox>
+
+            <span>تذكرني</span>
+          </label>
+
+          <ion-button
+            type="button"
+            fill="clear"
+            class="forgot-password-button"
+            (click)="forgotPassword()"
+          >
+            نسيت كلمة المرور؟
+          </ion-button>
+        </div>
+
+        <!-- زر تسجيل الدخول -->
+        <ion-button
+          type="submit"
+          expand="block"
+          class="login-button"
+          [disabled]="isLoading"
+        >
+          <ion-spinner
+            *ngIf="isLoading"
+            name="crescent"
+          ></ion-spinner>
+
+          <div
+            class="login-button-content"
+            *ngIf="!isLoading"
+          >
+            <ion-icon
+              name="log-in-outline"
+              class="login-arrow"
+            ></ion-icon>
+
+            <span class="login-button-text">
+              تسجيل الدخول
+            </span>
+          </div>
+        </ion-button>
+      </form>
+
+      <!-- التنبيه الأمني -->
+      <div class="security-notice">
+        <div class="security-icon-box">
+          <ion-icon
+            name="shield-checkmark-outline"
+          ></ion-icon>
+        </div>
+
+        <p>
+          هذا النظام مخصص لموظفي أمانة محافظة جدة فقط.
+          يرجى التأكد من استخدام بيانات اعتمادك الوظيفية
+          الرسمية للدخول.
+        </p>
+      </div>
+    </main>
+
+
+  </div>
+</ion-content>

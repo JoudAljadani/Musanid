@@ -1,0 +1,144 @@
+<ion-content [fullscreen]="true" [scrollY]="selectedPeriod === 'custom'" class="reports-content" dir="rtl">
+  <main class="page-container" [class.custom-period-active]="selectedPeriod === 'custom'">
+    <header class="reports-header">
+      <h1>التقارير</h1>
+    </header>
+    <section class="period-filter" aria-label="تحديد مدة التقرير">
+      <button type="button" [class.active]="selectedPeriod === 'today'" (click)="selectPeriod('today')">اليوم</button>
+      <button type="button" [class.active]="selectedPeriod === 'week'" (click)="selectPeriod('week')">هذا الأسبوع</button>
+      <button type="button" [class.active]="selectedPeriod === 'month'" (click)="selectPeriod('month')">هذا الشهر</button>
+      <button type="button" [class.active]="selectedPeriod === 'custom'" (click)="selectPeriod('custom')">مدة مخصصة</button>
+    </section>
+
+    <section class="selected-range" *ngIf="selectedPeriod === 'custom'">
+      <button class="range-close" type="button" aria-label="إلغاء الفترة المخصصة" (click)="resetToToday()">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+      <div class="range-copy">
+        <span>الفترة المختارة</span>
+        <strong>{{ formatDisplayDate(startDate) }} إلى {{ formatDisplayDate(endDate) }}</strong>
+      </div>
+      <button class="range-edit" type="button" (click)="openCustomDateModal()">تعديل</button>
+    </section>
+
+    <section class="metrics-grid">
+      <article class="metric-card total-card">
+        <div class="metric-icon total-icon"><ion-icon name="people-outline"></ion-icon></div>
+        <strong>{{ totalVisits }}</strong>
+        <span>إجمالي الزيارات</span>
+      </article>
+      <article class="metric-card">
+        <div class="metric-icon completed-icon"><ion-icon name="checkmark-circle-outline"></ion-icon></div>
+        <strong class="completed-number">{{ completedVisits }}</strong>
+        <span>تم تسجيل الدخول</span>
+      </article>
+      <article class="metric-card">
+        <div class="metric-icon incomplete-icon"><ion-icon name="close-circle-outline"></ion-icon></div>
+        <strong class="incomplete-number">{{ incompleteVisits }}</strong>
+        <span>لم يتم تسجيل الدخول</span>
+      </article>
+    </section>
+
+    <section class="departments-card">
+      <h2>أكثر الإدارات زيارة</h2>
+      <div class="department-row" *ngFor="let department of departments">
+        <div class="department-info">
+          <span>{{ department.name }}</span>
+          <strong [class]="department.className + '-text'">{{ department.visits }} زيارة</strong>
+        </div>
+        <div class="progress-track"><div class="progress-fill" [class]="department.className" [style.width.%]="department.percentage"></div></div>
+      </div>
+    </section>
+
+    <section class="visitors-card">
+      <div class="section-heading">
+        <h2>تفاصيل الزوار</h2>
+        <span>{{ visitors.length }} سجلات</span>
+      </div>
+      <div class="visitor-table">
+        <div class="visitor-row visitor-head">
+          <span>الاسم</span><span>رقم الهوية</span><span>سبب الزيارة</span>
+        </div>
+        <div class="visitor-row" *ngFor="let visitor of visitors">
+          <strong>{{ visitor.name }}</strong><span>{{ visitor.idNumber }}</span><span>{{ visitor.reason }}</span>
+        </div>
+      </div>
+    </section>
+
+    <ion-button expand="block" class="share-button" (click)="openShareModal()">
+      مشاركة التقرير
+      <ion-icon slot="end" name="share-social-outline"></ion-icon>
+    </ion-button>
+  </main>
+
+  <ion-modal [isOpen]="isCustomDateModalOpen" cssClass="custom-date-modal" (didDismiss)="closeCustomDateModal()">
+    <ng-template>
+      <section class="date-modal-content">
+        <header class="modal-header">
+          <h2>تحديد المدة</h2>
+          <button type="button" aria-label="إغلاق" (click)="closeCustomDateModal()"><ion-icon name="close-outline"></ion-icon></button>
+        </header>
+        <div class="date-inputs">
+          <label><span>من تاريخ</span><input type="date" [(ngModel)]="startDate" [max]="todayDate"></label>
+          <label><span>إلى تاريخ</span><input type="date" [(ngModel)]="endDate" [min]="startDate" [max]="todayDate"></label>
+        </div>
+        <ion-button expand="block" class="apply-date-button" (click)="applyCustomDate()">حفظ</ion-button>
+      </section>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="isShareModalOpen" cssClass="share-report-modal" (didDismiss)="closeShareModal()">
+    <ng-template>
+      <section class="share-modal-content">
+        <header class="share-modal-header">
+          <h2>مشاركة التقرير</h2>
+          <button type="button" aria-label="إغلاق" (click)="closeShareModal()"><ion-icon name="close-outline"></ion-icon></button>
+          <p>اختر طريقة المشاركة</p>
+        </header>
+        <button type="button" class="share-option supervisor-option" (click)="openSupervisorConfirmation()">
+          <div class="share-option-icon"><ion-icon name="send-outline"></ion-icon></div>
+          <div class="share-option-text"><strong>إرسال إلى المشرف</strong><span>اختيار المشرف وإرسال التقرير إليه</span></div>
+          <ion-icon class="option-arrow" name="chevron-back-outline"></ion-icon>
+        </button>
+        <button type="button" class="share-option pdf-option" (click)="downloadPdf()">
+          <div class="share-option-icon"><ion-icon name="document-text-outline"></ion-icon></div>
+          <div class="share-option-text"><strong>تنزيل PDF</strong><span>حفظ نسخة بصيغة PDF</span></div>
+          <ion-icon class="option-arrow" name="chevron-back-outline"></ion-icon>
+        </button>
+        <button type="button" class="share-option excel-option" (click)="downloadExcel()">
+          <div class="share-option-icon"><ion-icon name="grid-outline"></ion-icon></div>
+          <div class="share-option-text"><strong>تنزيل Excel</strong><span>حفظ بيانات التقرير بصيغة Excel</span></div>
+          <ion-icon class="option-arrow" name="chevron-back-outline"></ion-icon>
+        </button>
+      </section>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="isSupervisorConfirmationOpen" cssClass="confirmation-modal" (didDismiss)="closeSupervisorConfirmation()">
+    <ng-template>
+      <section class="confirmation-content">
+        <button class="confirmation-close" type="button" aria-label="إغلاق" (click)="closeSupervisorConfirmation()"><ion-icon name="close-outline"></ion-icon></button>
+        <div class="confirmation-icon"><ion-icon name="send-outline"></ion-icon></div>
+        <h2>إرسال التقرير للمشرف</h2>
+        <p>اختر المستلم ثم أرسل التقرير.</p>
+        <div class="supervisor-picker">
+          <span class="picker-label">المستلم</span>
+          <button type="button" class="picker-trigger" (click)="toggleSupervisorMenu()" [attr.aria-expanded]="isSupervisorMenuOpen">
+            <ion-icon name="chevron-down-outline" [class.open]="isSupervisorMenuOpen"></ion-icon>
+            <span [class.placeholder]="!selectedSupervisor">
+              {{ selectedSupervisor ? (selectedSupervisor.name + ' — ' + selectedSupervisor.title) : 'اختر المشرف' }}
+            </span>
+          </button>
+          <div class="picker-menu" *ngIf="isSupervisorMenuOpen">
+            <button type="button" *ngFor="let supervisor of supervisors" [class.selected]="supervisor.id === selectedSupervisorId" (click)="chooseSupervisor(supervisor.id)">
+              <strong>{{ supervisor.name }}</strong><span>{{ supervisor.title }}</span>
+            </button>
+          </div>
+        </div>
+        <ion-button expand="block" class="confirm-send-button" [disabled]="isSendingReport" (click)="confirmSupervisorSend()">
+          {{ isSendingReport ? 'جارٍ الإرسال...' : 'إرسال التقرير' }}
+        </ion-button>
+      </section>
+    </ng-template>
+  </ion-modal>
+</ion-content>

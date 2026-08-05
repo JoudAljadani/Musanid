@@ -1,0 +1,56 @@
+<ion-content [fullscreen]="true" [scrollY]="false" class="profile-content" dir="rtl">
+  <main class="profile-page">
+    <header class="profile-header">
+      <button type="button" class="back-button" aria-label="العودة إلى الرئيسية" (click)="goBack()">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </button>
+      <h1>إدارة الحساب</h1>
+    </header>
+
+    <section class="employee-card" aria-label="معلومات الموظف">
+      <div class="avatar-area">
+        <div class="employee-avatar">
+          @if (avatarPreview) {
+            <img [src]="avatarPreview" alt="الصورة الشخصية للموظف" />
+          } @else {
+            <ion-icon name="person-circle-outline" aria-hidden="true"></ion-icon>
+          }
+        </div>
+        <input #avatarInput class="avatar-input" type="file" accept="image/*" aria-label="تغيير الصورة الشخصية" (change)="onAvatarSelected($event)" />
+        <button type="button" class="camera-button" aria-label="رفع صورة شخصية" (click)="avatarInput.click()">
+          <ion-icon name="camera-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="employee-data">
+        <div class="employee-name">محمد</div>
+        <div class="employee-role">موظف أمن</div>
+        <div class="employee-number" dir="ltr">EMP-0000</div>
+      </div>
+    </section>
+
+    <section class="settings-section" aria-label="إعدادات الحساب">
+      <button type="button" class="setting-card" (click)="openChangePassword()"><span class="setting-icon teal-icon"><ion-icon name="lock-closed-outline"></ion-icon></span><span class="setting-copy"><strong>تغيير كلمة المرور</strong><small>تحديث كلمة المرور الخاصة بحسابك</small></span><ion-icon class="setting-arrow" name="chevron-forward-outline"></ion-icon></button>
+      <button type="button" class="setting-card" (click)="openLanguage()"><span class="setting-icon blue-icon"><ion-icon name="language-outline"></ion-icon></span><span class="setting-copy"><strong>اللغة</strong><small>تغيير لغة التطبيق</small></span><ion-icon class="setting-arrow" name="chevron-forward-outline"></ion-icon></button>
+      <button type="button" class="setting-card" (click)="openPrivacy()"><span class="setting-icon purple-icon"><ion-icon name="shield-checkmark-outline"></ion-icon></span><span class="setting-copy"><strong>سياسة الخصوصية</strong><small>عرض سياسة الخصوصية</small></span><ion-icon class="setting-arrow" name="chevron-forward-outline"></ion-icon></button>
+      <button type="button" class="setting-card" (click)="openAboutApp()"><span class="setting-icon navy-icon"><ion-icon name="information-circle-outline"></ion-icon></span><span class="setting-copy"><strong>حول التطبيق</strong><small>معلومات عن تطبيق مساند</small></span><ion-icon class="setting-arrow" name="chevron-forward-outline"></ion-icon></button>
+    </section>
+
+    <button type="button" class="logout-button" (click)="openLogoutModal()">
+      <span>تسجيل الخروج</span><ion-icon name="log-out-outline"></ion-icon>
+    </button>
+  </main>
+
+  <ion-modal [isOpen]="isLogoutModalOpen" cssClass="logout-modal" [backdropDismiss]="true" (didDismiss)="closeLogoutModal()">
+    <ng-template>
+      <section class="logout-dialog" dir="rtl" role="dialog" aria-modal="true" aria-labelledby="logout-title">
+        <div class="logout-dialog-icon"><ion-icon name="log-out-outline"></ion-icon></div>
+        <h2 id="logout-title">هل تريد تسجيل الخروج؟</h2>
+        <p>سيتم تسجيل خروجك من النظام، ويمكنك تسجيل الدخول مرة أخرى في أي وقت.</p>
+        <div class="logout-dialog-actions">
+          <button #cancelButton type="button" class="modal-cancel-button" (click)="closeLogoutModal()">إلغاء</button>
+          <button type="button" class="modal-confirm-button" (click)="confirmLogout()"><ion-icon name="log-out-outline"></ion-icon><span>تسجيل الخروج</span></button>
+        </div>
+      </section>
+    </ng-template>
+  </ion-modal>
+</ion-content>

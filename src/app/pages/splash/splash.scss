@@ -1,0 +1,375 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.splash-content {
+  --background: transparent;
+}
+
+/* =====================================================
+   Main container
+===================================================== */
+
+.splash-container {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+/* =====================================================
+   Background image
+===================================================== */
+
+.splash-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* =====================================================
+   Logo
+===================================================== */
+
+.splash-logo-wrapper {
+  position: absolute;
+
+  /* رفعنا العناصر كلها 10px */
+  top: calc(45% - 50px);
+  left: 50%;
+
+  z-index: 2;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.15);
+
+  transform-origin: center center;
+
+  animation:
+    logoIntro
+    1200ms
+    cubic-bezier(0.25, 0.1, 0.25, 1)
+    forwards;
+
+  will-change: transform, opacity;
+}
+
+.splash-logo {
+  display: block;
+
+  /* كبرنا الشعار شوي */
+  width: 250px;
+  max-width: 72vw;
+  height: auto;
+
+  object-fit: contain;
+}
+
+@keyframes logoIntro {
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.15);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+}
+
+/* =====================================================
+   Tagline
+===================================================== */
+
+.splash-tagline {
+  position: absolute;
+
+  top: calc(45% + 125px);
+  left: 50%;
+
+  z-index: 2;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0 18px;
+
+  direction: rtl;
+
+  text-align: center;
+
+  font-family:
+    "Alexandria",
+    "IBM Plex Sans Arabic",
+    "Segoe UI",
+    sans-serif;
+
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.5;
+
+  background:
+    linear-gradient(
+      90deg,
+      #06a9b6 0%,
+      #1d78a1 25%,
+      #305090 50%,
+      #3c3886 75%,
+      #402f82 100%
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, 12px);
+
+  animation:
+    taglineFadeUp
+    400ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+
+  will-change: opacity, transform;
+}
+
+@keyframes taglineFadeUp {
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, 12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, 0);
+  }
+}
+
+/* =====================================================
+   Progress bar wrapper
+===================================================== */
+
+.splash-progress-wrapper {
+  position: absolute;
+
+  top: calc(45% + 212px);
+  left: 50%;
+
+  z-index: 2;
+
+  /* عرض أكبر */
+  width: 240px;
+  max-width: 68vw;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, 8px);
+
+  animation:
+    progressFadeIn
+    300ms
+    ease-out
+    forwards;
+
+  will-change: opacity, transform;
+}
+
+@keyframes progressFadeIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, 8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, 0);
+  }
+}
+
+/* =====================================================
+   Ionic progress bar
+===================================================== */
+
+.splash-progress {
+  display: block;
+
+  width: 100%;
+  height: 5px;
+
+  --background:
+    rgba(48, 80, 144, 0.14);
+
+  --progress-background:
+    linear-gradient(
+      90deg,
+      #06a9b6 0%,
+      #1d78a1 25%,
+      #305090 50%,
+      #3c3886 75%,
+      #402f82 100%
+    );
+
+  border-radius: 999px;
+
+  overflow: hidden;
+}
+
+.splash-progress::part(track) {
+  border-radius: 999px;
+}
+
+.splash-progress::part(progress) {
+  border-radius: 999px;
+}
+
+/* =====================================================
+   Small mobile screens
+===================================================== */
+
+@media (max-width: 359px) {
+  .splash-logo-wrapper {
+    top: calc(44% - 10px);
+  }
+
+  .splash-logo {
+    width: 210px;
+    max-width: 68vw;
+  }
+
+  .splash-tagline {
+    top: calc(44% + 105px);
+
+    padding: 0 14px;
+
+    font-size: 22px;
+  }
+
+  .splash-progress-wrapper {
+    top: calc(44% + 182px);
+
+    width: 205px;
+    max-width: 62vw;
+  }
+}
+
+/* =====================================================
+   Short screens
+===================================================== */
+
+@media (max-height: 700px) {
+  .splash-logo-wrapper {
+    top: calc(43% - 10px);
+  }
+
+  .splash-logo {
+    width: 220px;
+  }
+
+  .splash-tagline {
+    top: calc(43% + 110px);
+
+    font-size: 22px;
+  }
+
+  .splash-progress-wrapper {
+    top: calc(43% + 190px);
+
+    width: 210px;
+  }
+}
+
+/* =====================================================
+   Tablets
+===================================================== */
+
+@media (min-width: 768px) {
+  .splash-logo-wrapper {
+    top: calc(46% - 10px);
+  }
+
+  .splash-logo {
+    width: 300px;
+    max-width: 44vw;
+  }
+
+  .splash-tagline {
+    top: calc(46% + 150px);
+
+    font-size: 30px;
+  }
+
+  .splash-progress-wrapper {
+    top: calc(46% + 250px);
+
+    width: 280px;
+  }
+}
+
+/* =====================================================
+   Reduced motion
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-logo-wrapper {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+
+    animation: none;
+  }
+
+  .splash-tagline {
+    opacity: 1;
+
+    transform:
+      translate(-50%, 0);
+
+    animation: none;
+  }
+
+  .splash-progress-wrapper {
+    opacity: 1;
+
+    transform:
+      translate(-50%, 0);
+
+    animation: none;
+  }
+}

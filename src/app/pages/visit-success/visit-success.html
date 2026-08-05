@@ -1,0 +1,72 @@
+<ion-content fullscreen>
+
+  <div class="content">
+
+    <div class="permit-number">
+      تصريح رقم {{ permitNumber }}
+    </div>
+
+    <div class="success-icon">
+
+      <div class="outer-circle">
+
+        <div class="inner-circle">
+
+          <ion-icon
+            name="checkmark-outline">
+          </ion-icon>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <h1 class="title">
+      تم تسجيل الزائر بنجاح
+    </h1>
+
+    <p class="description">
+      تم تسجيل دخول {{ visitor.fullName }}
+      وإشعار الإدارة بوصوله.
+    </p>
+
+    <div class="info-card">
+
+      <div class="row">
+        <span>وقت الدخول</span>
+        <strong>{{ visitor.visitTime }}</strong>
+      </div>
+
+      <div class="row">
+        <span>الإدارة</span>
+        <strong>{{ visitor.department }}</strong>
+      </div>
+
+      <div class="row">
+        <span>نقطة الدخول</span>
+        <strong>البوابة الرئيسية</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+
+  <div class="footer">
+
+    <ion-button
+      expand="block"
+      class="home-btn"
+      (click)="goHome()">
+
+      العودة للصفحة الرئيسية
+
+    </ion-button>
+
+  </div>
+
+</ion-footer>

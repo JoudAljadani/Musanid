@@ -1,0 +1,328 @@
+:host {
+  --musaned-teal: #06a9b6;
+  --musaned-blue: #1d78a1;
+  --musaned-dark-blue: #305090;
+  --musaned-purple: #3c3886;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-content {
+  --background: #f5f7fb;
+  --overflow: hidden;
+}
+
+.profile-page {
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 27px) 16px calc(env(safe-area-inset-bottom) + 20px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #f5f7fb;
+}
+
+.profile-header {
+  position: relative;
+  min-height: 68px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.header-copy h1 {
+  margin: 0;
+  color: #10213e;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 13px;
+  background: #ffffff;
+  box-shadow: 0 4px 11px rgba(31, 48, 86, 0.045);
+}
+
+.back-button ion-icon {
+  color: #65718a;
+  font-size: 22px;
+}
+
+.employee-card {
+  min-height: 152px;
+  margin-top: 9px;
+  padding: 23px 21px;
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(29, 120, 161, 0.06);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 7px 18px rgba(31, 48, 86, 0.05);
+}
+
+.avatar-area {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  flex: 0 0 92px;
+}
+
+.employee-avatar {
+  width: 92px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 4px solid #f1f4f8;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(6, 169, 182, 0.12), rgba(60, 56, 134, 0.1));
+}
+
+.employee-avatar ion-icon {
+  color: var(--musaned-blue);
+  font-size: 66px;
+}
+
+.employee-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.camera-button {
+  position: absolute;
+  left: -2px;
+  bottom: 2px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--musaned-teal), var(--musaned-purple));
+  box-shadow: 0 4px 9px rgba(48, 80, 144, 0.16);
+}
+
+.camera-button ion-icon {
+  color: #ffffff;
+  font-size: 17px;
+}
+
+.employee-data {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.employee-name {
+  color: #14213d;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.employee-role {
+  margin-top: 3px;
+  color: var(--musaned-teal);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.employee-number {
+  margin-top: 13px;
+  padding-top: 11px;
+  width: 100%;
+  border-top: 1px solid #edf1f6;
+  color: #758098;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.settings-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  flex: 0 0 auto;
+}
+
+.setting-card {
+  width: 100%;
+  min-height: 78px;
+  padding: 14px 15px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 13px;
+  border: 1px solid rgba(29, 120, 161, 0.045);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(31, 48, 86, 0.038);
+  text-align: right;
+}
+
+.setting-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+}
+
+.setting-icon ion-icon {
+  font-size: 20px;
+}
+
+/* نفس ترتيب وألوان أيقونات صفحة الدعم */
+.teal-icon {
+  color: var(--musaned-teal);
+  background: rgba(6, 169, 182, 0.1);
+}
+
+.blue-icon {
+  color: var(--musaned-blue);
+  background: rgba(29, 120, 161, 0.09);
+}
+
+.purple-icon {
+  color: var(--musaned-purple);
+  background: rgba(60, 56, 134, 0.09);
+}
+
+.navy-icon {
+  color: var(--musaned-dark-blue);
+  background: rgba(48, 80, 144, 0.09);
+}
+
+.setting-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.setting-copy strong {
+  color: #20283a;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.setting-copy small {
+  color: #8a93a6;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.setting-arrow {
+  justify-self: end;
+  color: #a7b0c0;
+  font-size: 19px;
+}
+
+.logout-button {
+  position: relative;
+  width: 100%;
+  height: 56px;
+  margin-top: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 56px;
+  border: 1.5px solid #ed4e5c;
+  border-radius: 16px;
+  background: rgba(237, 78, 92, 0.025);
+  color: #df3342;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.logout-button ion-icon {
+  position: absolute;
+  right: 20px;
+  color: #df3342;
+  font-size: 20px;
+  transform: none;
+}
+
+button {
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-height: 760px) {
+  .profile-page {
+    padding-top: calc(env(safe-area-inset-top) + 8px);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
+  }
+
+  .profile-header { min-height: 52px; }
+  .employee-card { min-height: 118px; padding: 14px 17px; margin-top: 4px; }
+  .avatar-area, .employee-avatar { width: 78px; height: 78px; }
+  .avatar-area { flex-basis: 78px; }
+  .employee-avatar ion-icon { font-size: 56px; }
+  .camera-button { width: 31px; height: 31px; }
+  .employee-name { font-size: 18px; }
+  .employee-number { margin-top: 8px; padding-top: 8px; }
+  .settings-section { margin-top: 13px; gap: 7px; }
+  .setting-card { min-height: 59px; padding-top: 7px; padding-bottom: 7px; }
+  .logout-button { height: 46px; flex-basis: 46px; margin-top: 16px; }
+}
+
+
+.logout-button:active {
+  background: #c95f68;
+  border-color: #c95f68;
+  color: #ffffff;
+  transform: scale(0.995);
+}
+
+.logout-button:active ion-icon {
+  color: #ffffff;
+}
+
+
+/* Final account refinements */
+.profile-header h1{margin:0;color:#10213e;font-size:22px;font-weight:700;line-height:1.4;text-align:center}
+.setting-copy strong{font-size:16px}.setting-copy small{font-size:12.5px}.employee-name{font-size:21px}.employee-role,.employee-number{font-size:15px}
+.logout-button{font-size:18px;font-weight:700}.logout-button ion-icon{font-size:23px}
+ion-modal.logout-modal{--width:min(88vw,360px);--height:auto;--border-radius:24px;--backdrop-opacity:.32;align-items:center;justify-content:center}
+.logout-dialog{padding:28px 22px 22px;background:#fff;border-radius:24px;text-align:center;box-shadow:0 18px 44px rgba(31,48,86,.16)}
+.logout-dialog-icon{width:68px;height:68px;margin:0 auto 15px;border-radius:50%;display:grid;place-items:center;background:rgba(216,75,95,.09);color:#cc5b66}.logout-dialog-icon ion-icon{font-size:34px}
+.logout-dialog h2{margin:0 0 8px;color:#17233f;font-size:19px}.logout-dialog p{margin:0;color:#7e899d;font-size:13px;line-height:1.8}
+.logout-dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.logout-dialog-actions button{height:50px;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700}
+.modal-cancel-button{border:1px solid rgba(60,56,134,.18);background:#f3f2fb;color:#3c3886;box-shadow:0 0 0 3px rgba(60,56,134,.07)}
+.modal-confirm-button{border:1px solid #d66a74;background:#fff;color:#cf5965;display:flex;align-items:center;justify-content:center;gap:7px}.modal-confirm-button ion-icon{font-size:19px}
+
+/* Logout modal interactions */
+.modal-cancel-button{border:0!important;background:linear-gradient(135deg,#06a9b6,#305090,#402f82)!important;color:#fff!important;box-shadow:0 6px 16px rgba(48,80,144,.2)!important}
+.modal-confirm-button:active,.modal-confirm-button:focus-visible{background:#c95f68!important;border-color:#c95f68!important;color:#fff!important}.modal-confirm-button:active ion-icon,.modal-confirm-button:focus-visible ion-icon{color:#fff!important}

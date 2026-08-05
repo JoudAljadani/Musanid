@@ -1,0 +1,62 @@
+<ion-content
+  [fullscreen]="true"
+  [scrollY]="false"
+  class="notifications-content"
+  dir="rtl"
+>
+  <main class="notifications-page">
+    <header class="notifications-header">
+      <button
+        type="button"
+        class="back-button"
+        (click)="goBack()"
+        aria-label="الرجوع"
+      >
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <div class="title-block">
+        <h1>الإشعارات</h1>
+        <p *ngIf="unreadCount > 0">{{ unreadCount }} غير مقروءة</p>
+        <p *ngIf="unreadCount === 0">جميع الإشعارات مقروءة</p>
+      </div>
+    </header>
+
+    <div class="notifications-actions">
+      <button
+        type="button"
+        class="mark-all-button"
+        [disabled]="unreadCount === 0"
+        (click)="markAllAsRead()"
+      >
+        <ion-icon name="checkmark-done-outline"></ion-icon>
+        <span>تحديد الكل كمقروء</span>
+      </button>
+    </div>
+
+    <section class="notifications-list" aria-label="قائمة الإشعارات">
+      <article
+        *ngFor="let item of items"
+        [class.unread]="!item.isRead"
+        (click)="markAsRead(item)"
+      >
+        <span class="notification-icon">
+          <ion-icon [name]="item.icon"></ion-icon>
+        </span>
+
+        <div class="notification-copy">
+          <div class="notification-title-row">
+            <h2>{{ item.title }}</h2>
+            <span
+              *ngIf="!item.isRead"
+              class="unread-dot"
+              aria-label="غير مقروء"
+            ></span>
+          </div>
+          <p>{{ item.text }}</p>
+          <time>{{ item.time }}</time>
+        </div>
+      </article>
+    </section>
+  </main>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true" class="visits-content" dir="rtl">
+  <main class="visits-page">
+    <header class="page-header"><h1>الزيارات</h1></header>
+    <section class="search-box">
+      <ion-icon name="search-outline"></ion-icon>
+      <ion-input [(ngModel)]="searchTerm" placeholder="ابحث برقم الهوية" inputmode="search" clearInput="true"></ion-input>
+    </section>
+    <section class="filter-row" aria-label="فلترة الزيارات">
+      <button type="button" [class.active]="selectedFilter === 'all'" (click)="setFilter('all')">الكل</button>
+      <button type="button" [class.active]="selectedFilter === 'completed'" (click)="setFilter('completed')">مكتملة</button>
+      <button type="button" [class.active]="selectedFilter === 'incomplete'" (click)="setFilter('incomplete')">غير مكتملة</button>
+    </section>
+    <section class="visits-list">
+      <article class="visit-card" *ngFor="let visit of filteredVisits">
+        <div class="visit-top">
+          <div><h2>{{ visit.name }}</h2><span>{{ visit.reservation }}</span></div>
+          <span class="status" [class.completed]="visit.status === 'completed'" [class.incomplete]="visit.status === 'incomplete'">
+            <ion-icon [name]="visit.status === 'completed' ? 'checkmark-circle-outline' : 'time-outline'"></ion-icon>
+            {{ visit.status === 'completed' ? 'مكتملة' : 'غير مكتملة' }}
+          </span>
+        </div>
+        <div class="visit-details"><span>الهوية: {{ visit.idNumber }}</span><span>سبب الزيارة: {{ visit.reason }}</span></div>
+        <div class="visit-date"><ion-icon name="calendar-outline"></ion-icon><span>{{ visit.date }} — {{ visit.time }}</span></div>
+      </article>
+      <div class="empty-state" *ngIf="filteredVisits.length === 0">لا توجد زيارات مطابقة.</div>
+    </section>
+  </main>
+</ion-content>
