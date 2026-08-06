@@ -293,6 +293,13 @@
             </span>
           </div>
         </ion-button>
+        <div
+  class="field-error-message"
+  *ngIf="generalErrorMessage"
+>
+  <ion-icon name="alert-circle-outline"></ion-icon>
+  <span>{{ generalErrorMessage }}</span>
+</div>
       </form>
 
       <!-- التنبيه الأمني -->
