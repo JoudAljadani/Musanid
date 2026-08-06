@@ -15,6 +15,7 @@ import {
   IonLabel,
   IonSpinner,
 } from '@ionic/angular/standalone';
+import { Auth } from '../../services/authentication';
 
 import { addIcons } from 'ionicons';
 
@@ -29,6 +30,7 @@ import {
   shieldCheckmarkOutline,
   squareOutline,
 } from 'ionicons/icons';
+
 
 @Component({
   selector: 'app-login',
@@ -62,7 +64,10 @@ export class Login {
 
   generalErrorMessage = '';
 
-  constructor(private readonly router: Router) {
+constructor(
+  private readonly router: Router,
+  private readonly auth: Auth
+) {
     addIcons({
       mailOutline,
       lockClosedOutline,
@@ -147,7 +152,7 @@ export class Login {
     void this.router.navigate(['/forgot-password']);
   }
 
-  login(loginForm: NgForm): void {
+ async login(loginForm: NgForm): Promise<void> {
     this.submitted = true;
     this.generalErrorMessage = '';
 
@@ -166,15 +171,23 @@ export class Login {
 
       return;
     }
+this.isLoading = true;
 
-    this.isLoading = true;
+const { error } = await this.auth.login(
+  this.email,
+  this.password
+);
 
-    setTimeout(() => {
-      this.isLoading = false;
+this.isLoading = false;
 
-      this.router.navigateByUrl('/tabs/home', {
-        replaceUrl: true,
-      });
-    }, 1200);
+if (error) {
+  this.generalErrorMessage =
+    'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+  return;
+}
+
+await this.router.navigateByUrl('/tabs/home', {
+  replaceUrl: true,
+});
   }
 }

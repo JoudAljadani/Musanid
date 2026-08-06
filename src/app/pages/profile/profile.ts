@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from '../../services/authentication';
 import { IonContent, IonIcon, IonModal } from '@ionic/angular/standalone';
 import { NavController } from '@ionic/angular';
 import { addIcons } from 'ionicons';
@@ -12,7 +13,11 @@ export class ProfileComponent {
   avatarPreview: string | null = localStorage.getItem('musanedEmployeeAvatar');
   isLogoutModalOpen = false;
 
-  constructor(private readonly router: Router, private readonly navController: NavController) {
+  constructor(
+  private readonly router: Router,
+  private readonly navController: NavController,
+  private readonly auth: Auth
+) {
     addIcons({ arrowForwardOutline, cameraOutline, chevronForwardOutline, informationCircleOutline, languageOutline, lockClosedOutline, logOutOutline, personCircleOutline, shieldCheckmarkOutline });
   }
 
@@ -23,12 +28,19 @@ export class ProfileComponent {
   openAboutApp(): void { void this.navController.navigateForward('/about-app', { animated: true }); }
   openLogoutModal(): void { this.isLogoutModalOpen = true; window.setTimeout(() => this.cancelButton?.nativeElement.focus(), 180); }
   closeLogoutModal(): void { this.isLogoutModalOpen = false; }
-  async confirmLogout(): Promise<void> {
-    this.isLogoutModalOpen = false;
-    await this.logoutModal?.dismiss();
-    await this.router.navigateByUrl('/login', { replaceUrl: true });
-  }
+ async confirmLogout(): Promise<void> {
 
+  this.isLogoutModalOpen = false;
+
+  await this.logoutModal?.dismiss();
+
+  await this.auth.logout();
+
+  await this.router.navigateByUrl('/login', {
+    replaceUrl: true,
+  });
+
+}
   onAvatarSelected(event: Event): void {
     const input = event.target as HTMLInputElement; const file = input.files?.[0];
     if (!file || !file.type.startsWith('image/')) return;
