@@ -5,24 +5,34 @@
   dir="rtl"
 >
   <main class="notifications-page">
+
     <header class="notifications-header">
       <button
         type="button"
         class="back-button"
+        aria-label="رجوع"
         (click)="goBack()"
-        aria-label="الرجوع"
       >
         <ion-icon name="arrow-back-outline"></ion-icon>
       </button>
 
       <div class="title-block">
         <h1>الإشعارات</h1>
-        <p *ngIf="unreadCount > 0">{{ unreadCount }} غير مقروءة</p>
-        <p *ngIf="unreadCount === 0">جميع الإشعارات مقروءة</p>
+
+        <p *ngIf="unreadCount > 0">
+          {{ unreadCount }} غير مقروءة
+        </p>
+
+        <p *ngIf="unreadCount === 0 && items.length > 0">
+          جميع الإشعارات مقروءة
+        </p>
       </div>
     </header>
 
-    <div class="notifications-actions">
+    <div
+      class="notifications-actions"
+      *ngIf="items.length > 0"
+    >
       <button
         type="button"
         class="mark-all-button"
@@ -34,7 +44,11 @@
       </button>
     </div>
 
-    <section class="notifications-list" aria-label="قائمة الإشعارات">
+    <section
+      class="notifications-list"
+      aria-label="قائمة الإشعارات"
+      *ngIf="items.length > 0"
+    >
       <article
         *ngFor="let item of items"
         [class.unread]="!item.isRead"
@@ -47,16 +61,29 @@
         <div class="notification-copy">
           <div class="notification-title-row">
             <h2>{{ item.title }}</h2>
+
             <span
               *ngIf="!item.isRead"
               class="unread-dot"
               aria-label="غير مقروء"
             ></span>
           </div>
+
           <p>{{ item.text }}</p>
+
           <time>{{ item.time }}</time>
         </div>
       </article>
     </section>
+
+    <section
+      class="empty-notifications"
+      *ngIf="!isLoading && items.length === 0"
+    >
+      <ion-icon name="notifications-outline"></ion-icon>
+      <h2>لا توجد إشعارات</h2>
+      <p>ستظهر الإشعارات الجديدة هنا.</p>
+    </section>
+
   </main>
 </ion-content>

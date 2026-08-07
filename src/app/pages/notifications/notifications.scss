@@ -188,3 +188,40 @@
   color: #98a2b4;
   font-size: 10px;
 }
+.empty-notifications {
+  min-height: 360px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.empty-notifications ion-icon {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(6, 169, 182, 0.11),
+    rgba(64, 47, 130, 0.09)
+  );
+  color: #2384a2;
+  font-size: 36px;
+}
+
+.empty-notifications h2 {
+  margin: 0;
+  color: #071b3e;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.empty-notifications p {
+  margin: 7px 0 0;
+  color: #8793a8;
+  font-size: 12px;
+}

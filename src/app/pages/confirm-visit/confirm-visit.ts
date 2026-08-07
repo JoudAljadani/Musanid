@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -11,6 +11,8 @@ import {
   IonIcon,
   IonFooter
 } from '@ionic/angular/standalone';
+
+import { Notifications } from '../../services/notifications';
 
 @Component({
   selector: 'app-confirm-visit',
@@ -41,51 +43,87 @@ export class ConfirmVisitPage implements OnInit {
   };
 
   initials = '';
+  isSubmitting = false;
 
-  constructor(private router: Router) { }
+  constructor(
+    private readonly router: Router,
+    private readonly notificationsService: Notifications
+  ) {}
 
-  ngOnInit() {
-    const data = this.router.getCurrentNavigation()?.extras.state as any;
+  ngOnInit(): void {
+    const data =
+      this.router.getCurrentNavigation()?.extras.state as any;
 
-if (data?.visitor) {
+    if (data?.visitor) {
+      this.visitor = {
+        ...this.visitor,
+        ...data.visitor,
+        reference:
+          'JV-' +
+          Math.floor(
+            100000 + Math.random() * 900000
+          ),
+        visitDate:
+          new Date().toLocaleDateString('ar-SA'),
+        visitTime:
+          new Date().toLocaleTimeString('ar-SA', {
+            hour: '2-digit',
+            minute: '2-digit'
+          })
+      };
+    }
 
-  this.visitor = {
-    ...this.visitor,
-    ...data.visitor,
-    reference: 'JV-' + Math.floor(100000 + Math.random() * 900000),
-    visitDate: new Date().toLocaleDateString('ar-SA'),
-    visitTime: new Date().toLocaleTimeString('ar-SA', {
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-  };
-
-}
-
-this.generateInitials();
+    this.generateInitials();
   }
 
-  generateInitials() {
-    const names = this.visitor.fullName.trim().split(' ');
+  generateInitials(): void {
+    const names =
+      this.visitor.fullName.trim().split(' ');
 
     if (names.length >= 2) {
-      this.initials = names[0][0] + ' ' + names[1][0];
+      this.initials =
+        names[0][0] + ' ' + names[1][0];
     } else {
       this.initials = names[0][0];
     }
   }
-goBack(){ void this.router.navigateByUrl('/add-visitor'); }
-goToSuccess(){
-  this.router.navigate(['/visit-success'],{
-    state:{
-      visitor:{
-        fullName: this.visitor.fullName,
-        department: this.visitor.department,
-        visitTime: this.visitor.visitTime
-      }
+
+  goBack(): void {
+    void this.router.navigateByUrl('/add-visitor');
+  }
+
+  async goToSuccess(): Promise<void> {
+    if (this.isSubmitting) {
+      return;
+    }
+
+    this.isSubmitting = true;
+
+    try {
+      await this.notificationsService.createNotification(
+        'تم تسجيل دخول زائر',
+        `تم تسجيل دخول الزائر ${this.visitor.fullName} بنجاح.`
+      );
+
+      await this.router.navigate(
+        ['/visit-success'],
+        {
+          state: {
+            visitor: {
+              fullName: this.visitor.fullName,
+              department: this.visitor.department,
+              visitTime: this.visitor.visitTime
+            }
+          }
+        }
+      );
+    } catch (error) {
+      console.error(
+        'Visitor notification error:',
+        error
+      );
+    } finally {
+      this.isSubmitting = false;
     }
   }
-    
-  );
-}
 }
